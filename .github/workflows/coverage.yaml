@@ -2,6 +2,9 @@ name: coverage
 
 on: [push]
 
+permissions:
+  contents: read
+
 jobs:
   coverage:
     runs-on: ubuntu-latest
@@ -48,6 +51,9 @@ jobs:
   comment:
     runs-on: ubuntu-latest
     needs: [coverage]
+    permissions:
+      pull-requests: write
+
     steps:
       - uses: actions/github-script@v6
         with:
