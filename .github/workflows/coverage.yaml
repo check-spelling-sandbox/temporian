@@ -1,6 +1,8 @@
 name: coverage
 
-on: [push]
+on:
+  push:
+  pull_request_target:
 
 permissions:
   contents: read
@@ -18,7 +20,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
         with:
-          ref: ${{ matrix.branch == 'main' && 'main' || '' }}
+          ref: ${{ matrix.branch == 'main' && 'main' || (github.event.pull_request && format('refs/pull/{0}/merge', github.event.pull_request.number)) || '' }}
 
       - name: Bazel cache
         id: bazel-cache
