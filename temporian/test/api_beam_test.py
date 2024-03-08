@@ -27,6 +27,7 @@ import temporian.beam as tpb
 class TFPTest(absltest.TestCase):
     def test_run_base(self):
         tmp_dir = tempfile.mkdtemp()
+        
         input_path = os.path.join(tmp_dir, "input.csv")
         output_path = os.path.join(tmp_dir, "output.csv")
 
